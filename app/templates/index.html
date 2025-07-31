@@ -84,7 +84,13 @@
         <h2>Diabetes Prediction</h2>
         <form action="/predict" method="post">
             {% for field in fields %}
-                <label>{{ field }}</label>
+                <label>
+                    {{ field
+                        | replace("BloodPressure", "Blood Pressure")
+                        | replace("SkinThickness", "Skin Thickness")
+                        | replace("DiabetesPedigreeFunction", "Diabetes Pedigree Function")
+                    }}
+                </label>
                 <input type="text" name="{{ field }}" required>
             {% endfor %}
             <input type="submit" value="Predict">
