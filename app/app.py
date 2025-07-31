@@ -9,6 +9,7 @@ app = Flask(__name__)
 model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'model.pkl')
 model = joblib.load(model_path)
 
+# Fields used in the form
 fields = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
           'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
 
@@ -29,6 +30,5 @@ def predict():
 
 if __name__ == '__main__':
     print("🚀 Starting Flask App...")
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if not on Render
     app.run(host='0.0.0.0', port=port)
-
