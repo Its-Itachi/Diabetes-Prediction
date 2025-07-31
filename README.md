@@ -8,7 +8,7 @@ This is a machine learning web application built with **Flask**, which predicts 
 
 ## 📊 Model Overview
 
-- **Algorithm**: Logistic Regression  
+- **Algorithm**: XGBoost Classifier (with feature scaling and outlier removal)  
 - **Dataset**: Pima Indians Diabetes Dataset  
 - **Target**: Predict whether the person is diabetic or not
 
@@ -23,16 +23,24 @@ This is a machine learning web application built with **Flask**, which predicts 
 - Diabetes Pedigree Function  
 - Age
 
+### ⚙️ Enhancements
+
+- Data cleaning: handled missing/zero values  
+- Outlier removal using Z-score method  
+- Feature scaling (StandardScaler)  
+- Model evaluation: classification report, confusion matrix, cross-validation  
+- Explainability: SHAP summary plot for feature importance  
+
 ---
 
 ## 🛠 Tech Stack
 
 | Layer      | Tools Used                       |
-|------------|----------------------------------|
-| Backend    | Flask                            |
-| ML         | scikit-learn, NumPy, Pandas      |
-| Frontend   | HTML, CSS (Jinja Templates)      |
-| Deployment | Render                           |
+|------------|---------------------------------|
+| Backend    | Flask                           |
+| ML         | XGBoost, scikit-learn, NumPy, Pandas |
+| Frontend   | HTML, CSS (Jinja Templates)     |
+| Deployment | Render                          |
 
 ---
 
@@ -70,9 +78,11 @@ This is a machine learning web application built with **Flask**, which predicts 
     pip install -r requirements.txt
     ```
 
-5. **Train the machine learning model:**
+5. **Train the machine learning model:**  
+   This runs the enhanced training pipeline including preprocessing, model training, evaluation, and SHAP explainability plots.  
     ```bash
     cd notebooks
+    jupyter notebook training.ipynb  # Or run as script
     python training.py
     ```
 
@@ -98,7 +108,7 @@ The app is deployed on **Render** and can be accessed live here:
 
 ## 👤 Author
 
-**Name**: Jayesh Dethe  
+**Name**: Jayesh Dethe
 **GitHub**: [@Its-Itachi](https://github.com/Its-Itachi)
 
 ---
@@ -116,7 +126,8 @@ If you find this project useful, please:
 ## 📝 Notes
 
 - Make sure to activate your virtual environment every time before running the app.  
-- The training step creates `model.pkl` which is used by the Flask app for prediction.  
+- The training step creates `model.pkl` and `scaler.pkl` which are used by the Flask app for prediction.  
+- SHAP explainability requires `shap` package and is optional for advanced insights.  
 - For any issues, feel free to open an issue on GitHub or reach out to me!
 
 ---
