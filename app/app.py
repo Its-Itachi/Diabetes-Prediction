@@ -5,30 +5,65 @@ import os
 
 app = Flask(__name__)
 
-# Load trained model
-model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'model.pkl')
+# =====================================
+# Load trained model & scaler
+# =====================================
+BASE_DIR = os.path.dirname(__file__)
+
+model_path = os.path.join(BASE_DIR, "..", "models", "model.pkl")
+scaler_path = os.path.join(BASE_DIR, "..", "models", "scaler.pkl")
+
 model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 
-# Fields used in the form
-fields = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
-          'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+# =====================================
+# Fields used in the form (UPDATED)
+# =====================================
+fields = ["Glucose", "BMI", "Age"]
 
-@app.route('/')
+# =====================================
+# Routes
+# =====================================
+@app.route("/")
 def home():
-    return render_template('index.html', fields=fields, prediction=None)
+    return render_template(
+        "index.html",
+        fields=fields,
+        prediction=None
+    )
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
     try:
-        values = [float(request.form[f]) for f in fields]
-        input_data = np.array(values).reshape(1, -1)
-        pred = model.predict(input_data)[0]
-        result = "Diabetic" if pred == 1 else "Not Diabetic"
-        return render_template('index.html', fields=fields, prediction=result)
+        # Extract form values in correct order
+        glucose = float(request.form["Glucose"])
+        bmi = float(request.form["BMI"])
+        age = float(request.form["Age"])
+
+        # Arrange input (ORDER MUST MATCH TRAINING)
+        X = np.array([[glucose, bmi, age]])
+
+        # Scale input
+        X_scaled = scaler.transform(X)
+
+        # Predict
+        pred = model.predict(X_scaled)[0]
+
+        result = "High Diabetes Risk" if pred == 1 else "Low Diabetes Risk"
+
+        return render_template(
+            "index.html",
+            fields=fields,
+            prediction=result
+        )
+
     except Exception as e:
         return f"An error occurred: {e}"
 
-if __name__ == '__main__':
+# =====================================
+# Run App
+# =====================================
+if __name__ == "__main__":
     print("🚀 Starting Flask App...")
-    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if not on Render
-    app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
