@@ -149,5 +149,3 @@ GitHub: [https://github.com/Its-Itachi](https://github.com/Its-Itachi)
 ---
 
 Happy coding! 🚀
-
-```
