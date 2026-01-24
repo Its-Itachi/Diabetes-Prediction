@@ -5,9 +5,9 @@ import os
 
 app = Flask(__name__)
 
-# =====================================
+
 # Load trained model & scaler
-# =====================================
+
 BASE_DIR = os.path.dirname(__file__)
 
 model_path = os.path.join(BASE_DIR, "..", "models", "model.pkl")
@@ -16,14 +16,14 @@ scaler_path = os.path.join(BASE_DIR, "..", "models", "scaler.pkl")
 model = joblib.load(model_path)
 scaler = joblib.load(scaler_path)
 
-# =====================================
+
 # Fields used in the form (UPDATED)
-# =====================================
+
 fields = ["Glucose", "BMI", "Age"]
 
-# =====================================
+
 # Routes
-# =====================================
+
 @app.route("/")
 def home():
     return render_template(
@@ -60,9 +60,9 @@ def predict():
     except Exception as e:
         return f"An error occurred: {e}"
 
-# =====================================
+
 # Run App
-# =====================================
+
 if __name__ == "__main__":
     print("🚀 Starting Flask App...")
     port = int(os.environ.get("PORT", 5000))

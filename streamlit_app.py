@@ -4,17 +4,17 @@ import pickle
 import joblib
 from pathlib import Path
 
-# ===============================
+
 # Load model & scaler
-# ===============================
+
 BASE_DIR = Path(__file__).resolve().parent
 
 model = pickle.load(open(BASE_DIR / "models" / "model.pkl", "rb"))
 scaler = joblib.load(BASE_DIR / "models" / "scaler.pkl")
 
-# ===============================
+
 # Streamlit UI
-# ===============================
+
 st.set_page_config(
     page_title="Diabetes Risk Prediction",
     layout="centered"
@@ -28,9 +28,9 @@ st.write(
 
 st.divider()
 
-# ===============================
+
 # Input fields (NO FORCED DEFAULTS)
-# ===============================
+
 glucose = st.number_input(
     "Fasting Glucose (mg/dL)",
     min_value=50,
@@ -58,9 +58,9 @@ age = st.number_input(
 
 st.divider()
 
-# ===============================
+
 # Prediction
-# ===============================
+
 if st.button("Predict Diabetes Risk"):
 
     # 🔴 Validation: ensure user entered all values

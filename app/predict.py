@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 import numpy as np
 
-# =====================================
+
 # Correct absolute imports
-# =====================================
+
 from app.schemas import DiabetesInput
 from app.auth import verify_token
 from app.model_loader import model, scaler
@@ -13,9 +13,9 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-# =====================================
+
 # JWT Dependency
-# =====================================
+
 def get_current_user(token: str = Depends(oauth2_scheme)):
     payload = verify_token(token)
     if payload is None:
@@ -23,9 +23,9 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     return payload
 
 
-# =====================================
+
 # Protected Prediction Endpoint
-# =====================================
+
 @router.post("/predict")
 def predict(data: DiabetesInput, user=Depends(get_current_user)):
     """

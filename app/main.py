@@ -1,15 +1,13 @@
 from fastapi import FastAPI
-
-# ✅ Correct absolute imports (VERY IMPORTANT)
 from app.predict import router as predict_router
 from app.auth import create_access_token
 
 app = FastAPI(title="Diabetes Prediction API")
 
 
-# ================================
+
 # Login Endpoint (JWT generation)
-# ================================
+
 @app.post("/login")
 def login():
     """
@@ -23,7 +21,7 @@ def login():
     }
 
 
-# ================================
+
 # Include Prediction Router
-# ================================
+
 app.include_router(predict_router)
