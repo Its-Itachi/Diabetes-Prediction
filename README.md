@@ -138,6 +138,7 @@ streamlit run streamlit_app.py
 ## 👤 Author
 
 **Jayesh Dethe**
+
 GitHub: [https://github.com/Its-Itachi](https://github.com/Its-Itachi)
 
 ---
