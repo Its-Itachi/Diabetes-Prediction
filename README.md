@@ -1,8 +1,13 @@
 # 🩺 Diabetes Prediction App
 
-👉 **Live App**: [https://diabetes-prediction-lnrv.onrender.com](https://diabetes-prediction-lnrv.onrender.com)
+👉 **Flask App**:  
+https://diabetes-prediction-lnrv.onrender.com  
 
-This is a machine learning web application built with **Flask**, which predicts whether a person is diabetic based on input health parameters.
+👉 **Streamlit App**:  
+https://diabetes-prediction-ndxju8jqihonmmmgwyybdw.streamlit.app/
+
+This is a machine learning web application that predicts whether a person is diabetic based on health parameters.  
+The project is deployed using **both Flask and Streamlit** to demonstrate different deployment approaches.
 
 ---
 
@@ -10,10 +15,13 @@ This is a machine learning web application built with **Flask**, which predicts 
 
 - **Algorithm**: XGBoost Classifier (with feature scaling and outlier removal)  
 - **Dataset**: Pima Indians Diabetes Dataset  
-- **Target**: Predict whether the person is diabetic or not
+- **Target**: Predict whether the person is diabetic or not  
 
-### 🔍 Features Used
+---
 
+## 🔍 Features Used
+
+### Original Features 
 - Pregnancies  
 - Glucose  
 - Blood Pressure  
@@ -21,114 +29,122 @@ This is a machine learning web application built with **Flask**, which predicts 
 - Insulin  
 - BMI  
 - Diabetes Pedigree Function  
-- Age
+- Age  
 
-### ⚙️ Enhancements
+### Selected Features Used for Training & Inference
+- **Glucose**
+- **BMI**
+- **Age**
+
+---
+
+## ⚙️ Enhancements
 
 - Data cleaning: handled missing/zero values  
 - Outlier removal using Z-score method  
 - Feature scaling (StandardScaler)  
 - Model evaluation: classification report, confusion matrix, cross-validation  
-- Explainability: SHAP summary plot for feature importance  
+- Explainability: SHAP summary plot for feature importance (used during experimentation)  
 
 ---
 
 ## 🛠 Tech Stack
 
-| Layer      | Tools Used                       |
-|------------|---------------------------------|
-| Backend    | Flask                           |
+| Layer      | Tools Used |
+|------------|-----------|
+| Backend    | Flask |
 | ML         | XGBoost, scikit-learn, NumPy, Pandas |
-| Frontend   | HTML, CSS (Jinja Templates)     |
-| Deployment | Render                          |
+| Frontend   | HTML, CSS (Jinja Templates) |
+| UI App    | Streamlit |
+| Deployment | Render, Streamlit Cloud |
 
 ---
 
 ## 🚀 How to Run Locally
 
-1. **Clone the repository:**
+1. **Clone the repository**
     ```bash
     git clone https://github.com/Its-Itachi/Diabetes-Prediction.git
     cd Diabetes-Prediction
     ```
 
-2. **Create a virtual environment:**
+2. **Create a virtual environment**
     ```bash
     python -m venv venv
     ```
 
-3. **Activate the virtual environment:**
+3. **Activate the virtual environment**
 
-    - On Windows (PowerShell):
-      ```bash
-      venv\Scripts\Activate.ps1
-      ```
-      Or if that doesn’t work:
+    - Windows (PowerShell):
       ```bash
       venv\Scripts\activate
       ```
 
-    - On macOS/Linux:
+    - macOS / Linux:
       ```bash
       source venv/bin/activate
       ```
 
-4. **Install dependencies:**
+4. **Install dependencies**
     ```bash
     pip install -r requirements.txt
     ```
 
-5. **Train the machine learning model:**  
-   This runs the enhanced training pipeline including preprocessing, model training, evaluation, and SHAP explainability plots.  
-    ```bash
-    cd notebooks
-    jupyter notebook training.ipynb  # Or run as script
-    python training.py
-    ```
+---
 
-6. **Run the Flask app:**
-    ```bash
-    cd ../app
-    python app.py
-    ```
+### ▶ Train the Model (Optional)
+```bash
+cd notebooks
+jupyter notebook training.ipynb
+````
 
-7. **Open your browser and visit:**
-    ```
-    http://localhost:5000
-    ```
+This step generates `model.pkl` and `scaler.pkl`.
 
 ---
 
-## 🌐 Deployment (Render)
+### ▶ Run Flask App
 
-The app is deployed on **Render** and can be accessed live here:  
-[https://diabetes-prediction-lnrv.onrender.com](https://diabetes-prediction-lnrv.onrender.com)
+```bash
+cd app
+python app.py
+```
+
+Open:
+
+```
+http://localhost:5000
+```
+
+---
+
+### ▶ Run Streamlit App
+
+```bash
+streamlit run streamlit_app.py
+```
+
+---
+
+## 🌐 Deployment
+
+* **Flask (Render)**:
+  [https://diabetes-prediction-lnrv.onrender.com](https://diabetes-prediction-lnrv.onrender.com)
+
+* **Streamlit Cloud**:
+  [https://diabetes-prediction-ndxju8jqihonmmmgwyybdw.streamlit.app/](https://diabetes-prediction-ndxju8jqihonmmmgwyybdw.streamlit.app/)
 
 ---
 
 ## 👤 Author
 
-**Name**: Jayesh Dethe
-**GitHub**: [@Its-Itachi](https://github.com/Its-Itachi)
-
----
-
-## ⭐ Support
-
-If you find this project useful, please:
-
-- ⭐ Star the repository on GitHub  
-- 📢 Share with friends and peers  
-- 🔔 Follow for more ML + Web projects  
+**Jayesh Dethe**
+GitHub: [https://github.com/Its-Itachi](https://github.com/Its-Itachi)
 
 ---
 
 ## 📝 Notes
 
-- Make sure to activate your virtual environment every time before running the app.  
-- The training step creates `model.pkl` and `scaler.pkl` which are used by the Flask app for prediction.  
-- SHAP explainability requires `shap` package and is optional for advanced insights.  
-- For any issues, feel free to open an issue on GitHub or reach out to me!
+* This project prioritizes **recall** for diabetes screening use cases
 
 ---
 
