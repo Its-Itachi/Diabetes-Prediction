@@ -11,6 +11,12 @@ The project is deployed using **both Flask and Streamlit** to demonstrate differ
 
 ---
 
+## 🎥 Demo Video
+
+https://github.com/user-attachments/assets/faaf873f-5a19-4b44-920d-573a1c8e8cc0
+
+---
+
 ## 📊 Model Overview
 
 - **Algorithm**: XGBoost Classifier (with feature scaling and outlier removal)  
@@ -51,52 +57,57 @@ The project is deployed using **both Flask and Streamlit** to demonstrate differ
 ## 🛠 Tech Stack
 
 | Layer      | Tools Used |
-|------------|-----------|
+|------------|------------|
 | Backend    | Flask |
 | ML         | XGBoost, scikit-learn, NumPy, Pandas |
 | Frontend   | HTML, CSS (Jinja Templates) |
-| UI App    | Streamlit |
+| UI App     | Streamlit |
 | Deployment | Render, Streamlit Cloud |
 
 ---
 
 ## 🚀 How to Run Locally
 
-1. **Clone the repository**
-    ```bash
-    git clone https://github.com/Its-Itachi/Diabetes-Prediction.git
-    cd Diabetes-Prediction
-    ```
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Its-Itachi/Diabetes-Prediction.git
+cd Diabetes-Prediction
+````
 
-2. **Create a virtual environment**
-    ```bash
-    python -m venv venv
-    ```
+### 2️⃣ Create a virtual environment
 
-3. **Activate the virtual environment**
+```bash
+python -m venv venv
+```
 
-    - Windows (PowerShell):
-      ```bash
-      venv\Scripts\activate
-      ```
+### 3️⃣ Activate the virtual environment
 
-    - macOS / Linux:
-      ```bash
-      source venv/bin/activate
-      ```
+* **Windows (PowerShell)**:
 
-4. **Install dependencies**
-    ```bash
-    pip install -r requirements.txt
-    ```
+```bash
+venv\Scripts\activate
+```
+
+* **macOS / Linux**:
+
+```bash
+source venv/bin/activate
+```
+
+### 4️⃣ Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
 ### ▶ Train the Model (Optional)
+
 ```bash
 cd notebooks
 jupyter notebook training.ipynb
-````
+```
 
 This step generates `model.pkl` and `scaler.pkl`.
 
@@ -127,10 +138,10 @@ streamlit run streamlit_app.py
 
 ## 🌐 Deployment
 
-* **Flask (Render)**:
+* **Flask (Render)**
   [https://diabetes-prediction-lnrv.onrender.com](https://diabetes-prediction-lnrv.onrender.com)
 
-* **Streamlit Cloud**:
+* **Streamlit Cloud**
   [https://diabetes-prediction-ndxju8jqihonmmmgwyybdw.streamlit.app/](https://diabetes-prediction-ndxju8jqihonmmmgwyybdw.streamlit.app/)
 
 ---
